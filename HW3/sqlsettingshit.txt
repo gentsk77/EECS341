@@ -1,0 +1,50 @@
+gentsk77@Samaritan-Intruder:~$ sudo mkdir /var/run/mysqld
+gentsk77@Samaritan-Intruder:~$ ls
+nohup.out
+gentsk77@Samaritan-Intruder:~$ sudo touch /var/run/musqld/mysqld.sock
+touch: cannot touch '/var/run/musqld/mysqld.sock': No such file or directory
+gentsk77@Samaritan-Intruder:~$ sudo touch /var/run/mysqld/mysqld.sock
+gentsk77@Samaritan-Intruder:~$ ls -lart /var/run/mysqld
+total 0
+drwxr-xr-x 1 root root 512 Feb 20 01:32 ..
+-rw-r--r-- 1 root root   0 Feb 20 01:33 mysqld.sock
+drwxr-xr-x 1 root root 512 Feb 20 01:33 .
+gentsk77@Samaritan-Intruder:~$ chown -R mysql /var/run/mysqld
+chown: changing ownership of '/var/run/mysqld/mysqld.sock': Operation not permitted
+chown: changing ownership of '/var/run/mysqld': Operation not permitted
+gentsk77@Samaritan-Intruder:~$ sudo chown -R mysql /var/run/mysqld
+gentsk77@Samaritan-Intruder:~$ ls -lart /var/run/mysqld
+total 0
+drwxr-xr-x 1 root  root 512 Feb 20 01:32 ..
+-rw-r--r-- 1 mysql root   0 Feb 20 01:33 mysqld.sock
+drwxr-xr-x 1 mysql root 512 Feb 20 01:33 .
+gentsk77@Samaritan-Intruder:~$ /etc/init.d/mysql restart
+ * Stopping MySQL database server mysqld                                                                         [ OK ]
+ * Starting MySQL database server mysqld                                                                                Password:
+su: Authentication failure
+gentsk77@Samaritan-Intruder:~$ sudo /etc/init.d/mysql restart
+ * Stopping MySQL database server mysqld                                                                         [ OK ]
+ * Starting MySQL database server mysqld                                                                                No directory, logging in with HOME=/
+                                                                                                                 [ OK ]
+gentsk77@Samaritan-Intruder:~$ mysql -u root -p
+Enter password:
+ERROR 1698 (28000): Access denied for user 'root'@'localhost'
+gentsk77@Samaritan-Intruder:~$ mysql -u root -p
+Enter password:
+ERROR 1698 (28000): Access denied for user 'root'@'localhost'
+gentsk77@Samaritan-Intruder:~$ sudo mysql -u root -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6
+Server version: 5.7.25-0ubuntu0.18.04.2 (Ubuntu)
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> exit;
+Bye
