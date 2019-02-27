@@ -14,6 +14,7 @@ $ \prod_{user.name} (\sigma_{user.id \, = \, user\_role.user\_id \, \wedge ~ use
 
 ### b. Tuple relational calculus
 
+$ \{t~|~(\exist u)(u \in user (u[name] = t[name] \wedge (\exist ~ ur) (ur \in user\_role (ur[user\_id] = u[id] \wedge (\exist ra)(ra \in role\_area (ra[role\_id] = role[id] \wedge (\exist a)(a \in area (a[id] = ra[area\_id] \wedge a[name] = 'Cleveland City'))))))) \}   $
 
 ### c. SQL
 
