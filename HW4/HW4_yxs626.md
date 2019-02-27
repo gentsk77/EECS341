@@ -46,14 +46,5 @@ $ \prod_{user.name, ~ role\_area.area\_id} (\sigma_{user.id \, = \, user\_role.u
 ### c. SQL
 
 ```sql
-SELECT DISTINCT user.name 
-FROM user, user_role, role_area, area 
-WHERE user.id = user_role.user_id  
-  AND user_role.role_id = role_area.role_id 
-  AND role_area.area_id = area.id 
-  AND user.id NOT IN (SELECT ur.user_id
-                      FROM user_role ur, role_area ra, area a
-                      WHERE ur.role_id = ra.role_id 
-                        AND ra.area_id = a.id 
-                        AND a.name = 'Cleveland City');
+
 ```
