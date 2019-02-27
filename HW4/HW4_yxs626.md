@@ -31,11 +31,14 @@ WHERE u.id = ur.user_id
 
 ## 2. Find the name of users associated with every area except “Cleveland City”
 
-We are substracting prob1 from all of the users who is related to an area. 
+For this problem, in order to find the users associated with every area except "Cleveland City", we need to first figure out the total number of distinct areas in the database. 
 
 ### a. Relational algebra
 
-$ \prod_{user.name} (\sigma_{user.id \, = \, user\_role.user\_id \, \wedge ~ user\_role.role\_id ~ = ~ role\_area.role\_id ~\wedge~ role\_area.area\_id ~ = ~ area.id} (user \times user\_role \times role\_area \times area)) - \prod_{user.name} (\sigma_{user.id \, = \, user\_role.user\_id \, \wedge ~ user\_role.role\_id ~ = ~ role\_area.role\_id ~\wedge~ role\_area.area\_id ~ = ~ area.id ~\wedge~ area.name~ = ~'Cleveland~City'} (user \times user\_role \times role\_area \times area)) $
+What we do for this part is just to divide the list of all the areas except "Cleveland City" from a list of user names as well as the areas associated with them. 
+
+$ \prod_{user.name, ~ role\_area.area\_id} (\sigma_{user.id \, = \, user\_role.user\_id \, \wedge ~ user\_role.role\_id ~ = ~ role\_area.role\_id } (user \times user\_role \times role\_area )) / \prod_{area.id} (\sigma_{area.name <> 'Cleveland~City'} (area))  $
+
 
 ### b. Tuple relational calculus
 
