@@ -10,11 +10,11 @@
 
 ### a. Relational algebra
 
-$ \prod_{user.name} (\sigma_{user.id \, = \, user\_role.user\_id \, \wedge ~ user\_role.role\_id ~ = ~ role\_area.role\_id ~ \wedge ~ role\_area.area\_id = ~ area.id} (user \times user\_role \times role\_area \times area) - \sigma_{user.id \, = \, user\_role.user\_id \, \wedge ~ user\_role.role\_id ~ = ~ role\_area.role\_id ~\wedge~ role\_area.area\_id ~ = ~ area.id ~\wedge~ area.name~ <> ~'Cleveland~City'} (user \times user\_role \times role\_area \times area)) $
+$ \prod_{user.name} (\sigma_{user.id \, = \, user\_role.user\_id \, \wedge ~ user\_role.role\_id ~ = ~ role\_area.role\_id ~ \wedge ~ role\_area.area\_id = ~ area.id} (user \times user\_role \times role\_area \times area) - \sigma_{user.id \, = \, user\_role.user\_id \, \wedge ~ user\_role.role\_id ~ = ~ role\_area.role\_id ~\wedge~ role\_area.area\_id ~ = ~ area.id ~\wedge~ area.name~ <> ~ 'Cleveland~City'} (user \times user\_role \times role\_area \times area)) $
 
 ### b. Tuple relational calculus
 
-$ \{t| (\exists u)(u \in user \wedge t[name] = u[name] \wedge (\exists ur) (ur \in user\_role \wedge ur[user\_id] = u[id] \newline \wedge (\exists ra)(ra \in role\_area \wedge ra[role\_id] = ur[role\_id] \wedge (\forall a)(a \in area \wedge a[id] = ra[area\_id] \Rightarrow a[name] = "Cleveland ~ City")))))\}  $
+$ \{t| (\exists u)(u \in user \wedge t[name] = u[name] \wedge (\exists ur) (ur \in user\_role \wedge ur[user\_id] = u[id] \newline \wedge (\exists ra)(ra \in role\_area \wedge ra[role\_id] = ur[role\_id] \wedge (\forall a)(a \in area \wedge a[id] = ra[area\_id] \newline \Rightarrow a[name] = 'Cleveland~City')))))\} $
 
 ### c. SQL
 
