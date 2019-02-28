@@ -39,7 +39,7 @@ WHERE u.id = ur.user_id
 
 ### a. Relational algebra
 
-$ \prod_{user.name, ~ area.id} (\sigma_{user.id \, = \, user\_role.user\_id \, \wedge ~ user\_role.role\_id ~ = ~ role\_area.role\_id \wedge role\_area.area\_id = area.id } (user \times user\_role \times role\_area \times area)) / \prod_{area.id} (\sigma_{area.name <> 'Cleveland~City'} (area))  $
+$ \prod_{user.name, ~ area.id} (\sigma_{user.id \, = \, user\_role.user\_id \, \wedge ~ user\_role.role\_id ~ = ~ role\_area.role\_id \wedge role\_area.area\_id = area.id \wedge area.name <> 'Cleveland City'} (user \times user\_role \times role\_area \times area)) / \prod_{area.id} (\sigma_{area.name <> 'Cleveland~City'} (area))  $
 
 ### b. Tuple relational calculus
 
