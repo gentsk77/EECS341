@@ -10,7 +10,9 @@
 
 ### a. Relational algebra
 
-$ \prod_{user.name} (\sigma_{user.id \, = \, user\_role.user\_id \, \wedge ~ user\_role.role\_id ~ = ~ role\_area.role\_id ~\wedge~ role\_area.area\_id ~ = ~ area.id ~\wedge~ area.name~ = ~'Cleveland~City'} (user \times user\_role \times role\_area \times area)) $
+For this problem, we are simply substracting users who are associated with area other than Cleveland City from users who are associated with at least one area. 
+
+$ \prod_{user.name} (\prod_{user.name, ~ user.id} (\sigma_{user.id \, = \, user\_role.user\_id \, \wedge ~ user\_role.role\_id ~ = ~ role\_area.role\_id } (user \times user\_role \times role\_area)) - \prod_{user.name, ~ user.id} (\sigma_{user.id \, = \, user\_role.user\_id \, \wedge ~ user\_role.role\_id ~ = ~ role\_area.role\_id ~\wedge~ role\_area.area\_id ~ = ~ area.id ~\wedge~ area.name~ <> ~'Cleveland~City'} (user \times user\_role \times role\_area \times area))) $
 
 ### b. Tuple relational calculus
 
