@@ -27,11 +27,12 @@ $$
 CREATE MATERIALIZED VIEW flight_mileage AS (
     SELECT COUNT(DISTINCT flight.id), SUM(route.miles)
     FROM (
-        SELECT ticket.passenger_id, COUNT(DISTINCT flight.id), SUM(route.miles)
-        FROM ticket, flight, route
-        WHERE ticket.flight_id = flight.id
+        SELECT passenger.id, COUNT(DISTINCT flight.id), SUM(route.miles)
+        FROM passenger, ticket, flight, route
+        WHERE passenger.id = ticket.passenger_id
+          AND ticket.flight_id = flight.id
           AND flight.route_id = route.id
           AND flight.departure_datetime < now()
-        GROUP BY ticket.passenger_id)
-    WHERE ticket.passenger_id = :PASS_ID)
+        GROUP BY passenger.id)
+    WHERE passenger.id = :PASS_ID)
 ```
